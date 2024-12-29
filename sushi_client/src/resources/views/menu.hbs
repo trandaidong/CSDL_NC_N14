@@ -1,0 +1,91 @@
+
+<div class="container-menu">
+    <div class="shopping-cart-menu">
+        <a href="/shopping_cart">
+            <li class="ti-shopping-cart"></li>
+        </a>
+        
+    </div>
+    <div class="header-menu">
+        <ul class="total-select">
+            <li>
+                <ul class="branch-menu">
+                    <li> <span>Chi Nhánh</span></li>
+                    <li>
+                        <select id="type-of-branch">
+                        {{#if branch}}
+                            {{#each branch}}
+                                
+                                <option value="{{this.MACHINHANH}}">{{this.TENCHINHANH}}</option>
+                                
+                            {{/each}}
+                        {{else}}
+                            <p>Không có sản phẩm nào để hiển thị</p>
+                        {{/if}}
+                        </select>
+                        
+                    </li>
+                </ul>    
+            </li>
+            <li>
+                <ul class="dish-menu">
+                    <li> <span>Loại món</span></li>
+                    <li>
+                        <select id="type-of-dish">
+                            {{#if TypeOfDish}}
+                                {{#each TypeOfDish}}
+                                    
+                                    <option value="{{this.MALOAI}}">{{this.TENLOAI}}</option>
+                                    
+                                {{/each}}
+                            {{else}}
+                                <p>Không có sản phẩm nào để hiển thị</p>
+                            {{/if}}
+                        </select>
+                    </li>                
+                </ul>
+            </li>
+            <li>
+                <ul class="price-menu">
+                    <li> <span>Giá</span></li>
+                    <li>
+                        <select id="type-of-price">
+                            <option value="1">0-50.000đ</option>
+                            <option value="2">50.000đ-100.000đ</option>
+                            <option value="3">100.000đ trở lên</option>
+                        </select>
+                    </li> 
+                    
+                </ul>               
+            </li>
+            <li>
+                <ul class="btnfilter-menu">
+                    <button id="button-menu">
+                    <p>Lọc</p>
+                    <i class="ti-search"></i>
+                    </button>
+                </ul>
+            </li>
+        </ul>
+       <ul class="content-menu">
+            {{#if products}}
+                {{#each products}}
+                    <li data-mamon="{{this.MAMON}}">
+                        <div><button class="addCart">+</button></div>
+                        <div class="img-products-branch">
+                            <img src="{{this.URL}}" alt="" class="img-branch">
+                        </div>
+                        <p>{{this.TENMON}}</p>
+                        <p>{{this.MOTA}}</p>
+                        <p>{{this.GIA}} đ</p>
+                    </li>
+                {{/each}}
+            {{else}}
+                <p>Không có sản phẩm nào để hiển thị</p>
+            {{/if}}       
+        </ul>
+
+    </div>
+    
+</div>
+    <script src="/js/menu.js"></script>

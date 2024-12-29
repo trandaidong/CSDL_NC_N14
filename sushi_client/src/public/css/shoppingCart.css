@@ -1,0 +1,299 @@
+@charset "UTF-8";
+/* Shopping Cart Container */
+.shopping-cart_header {
+  margin-top: 115px;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center; }
+
+.header-cart {
+  display: flex;
+  align-items: center; }
+
+.header-cart i {
+  font-size: 40px;
+  color: #11d424; }
+
+.title-cart span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 470px; }
+
+/* Shopping Cart Items */
+.shopping-cartContainer {
+  list-style: none;
+  padding: 0; }
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 0.5fr;
+  /* 5 cột: Hình ảnh + mô tả, Loại món, Giá, Số lượng, Xóa */
+  align-items: center;
+  /* Căn giữa các phần tử theo chiều dọc */
+  gap: 15px;
+  /* Khoảng cách giữa các cột */
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 10px;
+  border-radius: 5px;
+  /* Góc bo tròn nhẹ */ }
+
+/* Cột hình ảnh và mô tả */
+.cart-item .description {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* Khoảng cách giữa hình ảnh và mô tả */ }
+
+.cart-item_img img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc; }
+
+.cart-item_des p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff; }
+
+.cart-item_kind {
+  display: flex;
+  justify-content: center;
+  /* Căn giữa nội dung theo chiều ngang */
+  align-items: center;
+  /* Căn giữa nội dung theo chiều dọc */
+  text-align: center;
+  /* Đảm bảo nội dung căn giữa */ }
+
+.cart-item_kind span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; }
+
+/* Cột giá món ăn */
+.cart-item_price p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+  margin: 0;
+  text-align: center;
+  /* Căn giữa nội dung */ }
+
+/* Cột số lượng */
+.cart-item_quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  /* Khoảng cách giữa các nút */ }
+
+.quantity-btn {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.quantity-btn:hover {
+  background-color: #555; }
+
+.quantity-input {
+  width: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px; }
+
+/* Cột nút xóa */
+.cart-item_remove {
+  cursor: pointer;
+  color: #f44336;
+  font-size: 18px;
+  text-align: right; }
+
+.cart-item_remove:hover {
+  color: #d32f2f; }
+
+.cart-item_remove i {
+  font-size: 18px; }
+
+.cart-item_remove:hover {
+  color: #d32f2f; }
+
+/* Confirm Order Container */
+.confim-oder {
+  display: flex;
+  justify-content: center;
+  /* Canh giữa các nút */
+  gap: 20px;
+  /* Khoảng cách giữa hai nút */
+  margin-top: 20px;
+  /* Khoảng cách phía trên với phần trước */
+  padding: 15px 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Nền tối nhẹ */
+  border-top: 2px solid #ddd;
+  /* Đường viền ngăn cách */ }
+
+/* Buttons */
+.btnconfirm {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #11d424;
+  /* Màu xanh mặc định */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease; }
+
+.btnconfirm:hover {
+  background-color: #0bb31a;
+  /* Màu xanh đậm khi hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* Hiệu ứng nổi */ }
+
+/* Đặt về Button */
+.orderonline {
+  background-color: #f44336;
+  /* Màu đỏ */ }
+
+.orderonline:hover {
+  background-color: #d32f2f;
+  /* Màu đỏ đậm khi hover */ }
+
+/* Đặt ngay Button */
+.ordernow {
+  background-color: #11d424;
+  /* Màu xanh */ }
+
+.ordernow:hover {
+  background-color: #0bb31a;
+  /* Màu xanh đậm khi hover */ }
+
+/* Payment Section */
+/* Tổng thể */
+.payment {
+  width: 100%;
+  max-width: 600px;
+  margin: 180px auto 50px;
+  /* Gộp margin-top và margin-bottom */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  font-family: Arial, sans-serif; }
+
+/* Header */
+.payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 20px;
+  /* Gộp margin-top và margin-bottom */ }
+
+.payment-header i {
+  font-size: 24px;
+  color: #11d424; }
+
+.payment-title p {
+  color: #35e405;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0; }
+
+.payment-header input {
+  flex: 1;
+  margin-left: 20px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #343232;
+  color: #fff; }
+
+/* Container */
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; }
+
+.payment-container div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.payment-container p {
+  color: #fff;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold; }
+
+.payment-container span {
+  font-size: 16px;
+  color: #ff5722; }
+
+/* Voucher */
+.voufcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Giảm khoảng cách giữa các phần tử */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #222;
+  transition: background-color 0.3s;
+  color: #fff;
+  /* Màu chữ mặc định cho voucher */ }
+
+.voufcher:hover {
+  background-color: #333; }
+
+.ti-gift {
+  all: unset;
+  font-size: 35px;
+  color: #f44336;
+  margin-right: 30px; }
+
+/* Button */
+.payment-container button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #11d424;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; }
+
+.payment-container button:hover {
+  background-color: #0bb31a; }
+
+.payment-container input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #343232;
+  /* Đặt nền trắng để dễ nhìn */
+  color: #fff;
+  /* Màu chữ đen */ }

@@ -1,0 +1,14 @@
+mixin search(api,keyword)
+    .search-box
+        form(
+            action=api 
+            id='single-form-search'
+        )
+            input(
+                type='text' 
+                placeholder='Nhập từ khóa..'
+                name="keyword",
+                class="form-control"
+                value=keyword
+            )
+            button(type="submit") &#x1F50D;

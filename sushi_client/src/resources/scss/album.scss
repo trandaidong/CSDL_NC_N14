@@ -1,0 +1,40 @@
+.container-album {
+    margin-top: 115px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px; 
+}
+
+
+.album-item {
+    height: 300px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+    background-color: rgba(2, 2, 2, 0.7); 
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Giữ phần tử trong vùng giới hạn */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng */
+    padding: 20px 0;
+}
+
+.frame-album{
+
+    width: 100%;
+    height: 80%;
+   
+}
+
+.album-item img {
+    width: 90%; /* Ảnh chiếm toàn bộ chiều rộng phần tử cha */
+    height: 100%; /* Giữ tỷ lệ ảnh */
+    margin-bottom: 10px;
+}
+
+.album-item p {
+    font-size: 18px;
+    color: #fff;
+    margin-top: 20px;
+}

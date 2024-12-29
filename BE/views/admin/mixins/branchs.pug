@@ -1,0 +1,14 @@
+mixin branchs(branchs,api,keyword)
+    .search-box
+            form(
+                action=api 
+                id='single-form-branch'
+            )
+                select(name='branchId')
+                    option(value=null selected) #{keyword}
+                    each item in branchs
+                        option(
+                            value=item.MACHINHANH
+                            selected=(keyword === item.MACHINHANH ? true: false)
+                        ) #{item.TENCHINHANH}
+                button(type="submit") Lọc

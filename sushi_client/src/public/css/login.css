@@ -1,0 +1,204 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+body {
+  height: 100%;
+  min-height: 780px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  height: 100%;
+  min-height: 780px;
+  width: 100%;
+  background-image: url("../img/body_bg.jpg");
+  background-size: contain;
+  background-position: center;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  height: 650px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.img-banner {
+  background-color: gray;
+  height: 100%;
+  width: 45%;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.img-banner h1 {
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/banner.jpg") center/cover no-repeat;
+  color: white;
+  text-transform: uppercase;
+  font: bold 100px/1.4 sans-serif;
+  padding: 30px 0 0 40px;
+  border-radius: 15px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Content */
+#login-form,
+#register-form,
+#forget-password-form {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-sushi {
+  height: 110px;
+  width: 120px;
+  background-image: url("../img/logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -50px;
+  border-radius: 70px;
+}
+
+.header-form h1 {
+  color: #1ee024;
+  font-size: 50px;
+  margin-top: 30px;
+}
+
+.form-group {
+  width: 80%;
+}
+
+.form-group label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  height: 100%;
+}
+
+.form-group label p {
+  color: #a4a5a5;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.form-group label input {
+  font-size: 15px;
+  height: 50px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 7px;
+  background-color: aliceblue;
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  width: 80%;
+  margin-top: 55px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  background-color: #1ee024;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #5df87f;
+}
+
+.forget-password,
+.create-account,
+.have-account {
+  width: 80%;
+}
+
+.forget-password {
+  margin-top: 60px;
+}
+
+.create-account,
+.have-account {
+  margin-top: 20px;
+  display: inline-flex;
+}
+
+.create-account p,
+.have-account p {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #a4a5a5;
+}
+
+.link {
+  color: #1ee024;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.link:hover {
+  color: #5df87f;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #a4a5a5;
+  margin-top: 30px;
+  width: 80%;
+}
+
+.line input,
+.line select {
+  height: 50px;
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 10px;
+  border-radius: 7px;
+}
+
+.line .customer-name,
+.line .citizen-id,
+.line .password,
+.line .confirm-password {
+  width: 47%;
+}
+
+.line .customer-name input,
+.line .citizen-id input,
+.line .password input,
+.line .confirm-password input {
+  width: 100%;
+}

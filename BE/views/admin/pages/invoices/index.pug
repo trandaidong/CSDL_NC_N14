@@ -1,0 +1,78 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+include ../../mixins/moment.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right
+
+        .row.search-box
+            form.search-form(
+                action=`${prefixAdmin}/api/v1/invoices/index` 
+                method="GET"
+                id='form-search'
+            )
+                div.form-group
+                    label(for="customer-id") Mã/Tên khách hàng:
+                    input#customer-id(type="text" name="customer_id" placeholder="Nhập mã/tên" value=searchs.customer_id)
+
+                div.form-group
+                    label(for="start-date") Từ ngày:
+                    input#start-date(type="date" name="start_date" value=searchs.start_date)
+
+                div.form-group
+                    label(for="end-date") Đến ngày:
+                    input#end-date(type="date" name="end_date" value=searchs.end_date)
+
+                button.submit-btn(type="submit") Tìm kiếm
+
+        .table-container
+            table
+                thead
+                    tr
+                        th STT
+                        th Mã hóa đơn
+                        th Khách hàng
+                        th Ngày thanh toán
+                        th Tổng tiền
+                        th Giảm giá
+                        th Thành tiền
+                        th Chi tiết
+                tbody
+                    each item, index in invoices
+                        tr
+                            td #{index + 1}
+                            td #{item.MAHOADON}
+                            td #{item.FULLNAME}
+                            td      
+                                +formatDate(item.NGAYTHANHTOAN)
+                            td #{item.TONGTIEN}
+                            td #{item.SOTIENGIAM}
+                            td #{item.SOTIENTHANHTOAN}
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/api/v1/employees/detail/${item.MANHANVIEN}`
+                                    class="btn btn-secondary btn-sm"
+                                ) 
+                                    i.fa-solid.fa-circle-info
+    //-                             button(
+    //-                                 class="btn btn-warning btn-sm"
+    //-                                 button-update-item
+    //-                                 button-id=item.MANHANVIEN
+    //-                             ) 
+    //-                                 i.fa-solid.fa-pen-to-square
+    //-                             button(class="btn btn-danger btn-sm ml-l"
+    //-                                 button-delete-item
+    //-                                 button-id=item.MANHANVIEN
+    //-                             ) 
+    //-                                 i.fa-solid.fa-trash-arrow-up
+    //- form(
+    //-     action=""
+    //-     method='POST'
+    //-     id="form-delete-item"
+    //-     data-path=`${prefixAdmin}/api/v1/employees/delete`
+    //-     )
+    script(src="/admin/js/invoice.js")

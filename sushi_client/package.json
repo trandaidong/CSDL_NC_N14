@@ -1,0 +1,40 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "watch": "node-sass --watch  src\\resources\\scss\\ --output src\\public\\css\\",
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoNgocCuong/node-js.git"
+  },
+  "keywords": [
+    "f8",
+    "blog",
+    "f8",
+    "node",
+    "js",
+    "nodejs"
+  ],
+  "author": "cuongdn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoNgocCuong/node-js/issues"
+  },
+  "homepage": "https://github.com/DoNgocCuong/node-js#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "mysql2": "^3.11.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.1.9"
+  }
+}

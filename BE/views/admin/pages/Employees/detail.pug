@@ -1,0 +1,45 @@
+
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+include ../../mixins/branchs.pug
+include ../../mixins/moment.pug
+
+block main
+    .container.mt-5
+      .card.shadow-lg
+        .card-header.text-center.bg-primary.text-white
+          h3 Thông Tin Nhân Viên
+        .card-body
+          .row.mb-3
+            .col-md-4.fw-bold Mã Nhân Viên:
+            .col-md-8 #{employee.MANHANVIEN}
+          .row.mb-3
+            .col-md-4.fw-bold Họ và Tên:
+            .col-md-8 #{employee.FULLNAME}
+          .row.mb-3
+            .col-md-4.fw-bold Bộ phận
+            .col-md-8 #{employee.TENBOPHAN}
+          .row.mb-3
+            .col-md-4.fw-bold Chi nhánh
+            .col-md-8 #{employee.TENCHINHANH}
+          .row.mb-3
+            .col-md-4.fw-bold Email:
+            .col-md-8
+              a(href="#") #{employee.EMAIL}
+          .row.mb-3
+            .col-md-4.fw-bold Ngày sinh
+            .col-md-8 
+                +formatDate(employee.NGAYSINH)
+          .row.mb-3
+            .col-md-4.fw-bold Lương cơ bản:
+                - const LUONG = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(employee.LUONG);
+            .col-md-8 #{LUONG}
+          .row.mb-3
+            .col-md-4.fw-bold Số Điện Thoại:
+            .col-md-8
+              a(href="#") #{employee.SDT}
+          .row.mb-3
+            .col-md-4.fw-bold Địa Chỉ:
+            .col-md-8 #{employee.DIACHI}

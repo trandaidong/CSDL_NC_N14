@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Thiết lập body */
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    color: #333;
+}
+
+/* Bố cục dashboard */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 270px;
+    padding: 20px;
+    background: #2d5167;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Make sidebar the reference for submenu */
+    z-index: 2; /* Ensure sidebar is above other elements */
+    overflow-y: auto; /* Add scrolling when necessary */
+
+    max-height: 100vh; /* Optional: limit sidebar height to viewport */
+    position: sticky; /* Giữ cố định */
+    top: 0; /* Vị trí cố định ở đầu */  
+}
+
+
+.sidebar h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+.sidebar nav ul.menu-left > li {
+    position: relative;
+    width: 100%;
+}
+
+.sidebar nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar nav ul.menu-left li ul li a:hover {
+    background-color: #ffffff;
+    color: #2d5167;
+}
+
+
+.sidebar nav .inner-icon{
+    width: 20px; /* Đặt chiều rộng cố định cho icon */
+    display: inline-flex;
+    justify-content: center; /* Căn giữa nội dung (biểu tượng) theo chiều ngang */
+    align-items: center; /* Căn giữa nội dung (biểu tượng) theo chiều dọc */
+    margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+.sidebar nav ul.menu-left li a .inner-icon {
+    font-size: 1.1rem;
+}
+.sidebar nav ul.menu-left > li > a {
+    font-weight: bold;
+    padding-left: 0px;
+    cursor: text;
+}
+/* Hiển thị menu User con ngang hàng với mục cha */
+.sidebar nav ul.menu-left li a .dropdown {
+    margin-left: 30px; /* Đẩy mũi tên sang phải */
+    font-size: 0.5rem; /* Kích thước của biểu tượng */
+    transition: transform 0.3s; /* Thêm hiệu ứng xoay mũi tên nếu cần */
+}
+.rotate{
+    transform: rotate(90deg);
+}
+
+.sidebar nav ul.menu-left .sub-menu {
+    display: none;
+
+}
+.sidebar nav ul.menu-left .sub-menu a{
+    padding-left: 40px;
+
+}

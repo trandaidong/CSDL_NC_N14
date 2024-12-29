@@ -1,0 +1,136 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+include ../../mixins/branchs.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right
+        .row
+            .col-10.search-box
+                form(
+                    action=api 
+                    id='single-form-search'
+                    )
+                    select(name='branchId')
+                        option(value="" selected) Chọn chi nhánh
+                        each item in branchs
+                            option(
+                                value=item.MACHINHANH
+                                selected=(branch === item.MACHINHANH ? true: false)
+                            ) #{item.TENCHINHANH}
+                    input(
+                        type='text' 
+                        placeholder='Mã khách hàng..'
+                        name="keyword",
+                        class="form-control"
+                        value=keyword
+                    )
+                    button(type="submit") Lọc
+            .col-2
+                +addnew() 
+        .table-container
+            table
+                thead
+                    tr
+                        th STT
+                        th Mã nhân viên
+                        th Họ Tên
+                        th SĐT
+                        th Giới tính 
+                        th Chi nhánh 
+                        th Bộ phận
+                        th Hành động
+                tbody
+                    each item, index in employees
+                        tr
+                            td #{index + 1}
+                            td #{item.MANHANVIEN}
+                            td #{item.FULLNAME}
+                            td #{item.SDT}
+                            td #{item.GIOITINH=="Male"?"Nam":"Nữ"}
+                            td #{item.TENCHINHANH}
+                            td #{item.TENBOPHAN}
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/api/v1/employees/detail/${item.MANHANVIEN}`
+                                    class="btn btn-secondary btn-sm"
+                                ) 
+                                    i.fa-solid.fa-circle-info
+                                button(
+                                    class="btn btn-warning btn-sm"
+                                    button-update-item
+                                    button-id=item.MANHANVIEN
+                                ) 
+                                    i.fa-solid.fa-pen-to-square
+                                button(class="btn btn-danger btn-sm ml-l"
+                                    button-delete-item
+                                    button-id=item.MANHANVIEN
+                                ) 
+                                    i.fa-solid.fa-trash-arrow-up
+
+
+
+        #container-right
+            // Modal Overlay
+            #modalOverlay.modal-overlay
+                .modal
+                    button#closeModalButton.close-button(type='button') &times;
+                    // Nút đóng modal
+                    h3.modalTitle Thêm nhân viên
+                    form(
+                        action=""
+                        id="addPlaneForm"
+                        form-create-update
+                        method="POST"
+                        data-path=`${prefixAdmin}/api/v1/employees`
+                    )
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='HoTen') Tên nhân viên
+                                input#HoTen(type='text' name="fullname" required='')
+                            .custom-form-group
+                                label(for='MaBoPhan') Bộ phận
+                                select#MaBoPhan(name='department',required='')
+                                    each item in departments
+                                        option(
+                                            value=item.MABOPHAN 
+                                        ) #{item.TENBOPHAN}
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='MaChiNhanh') Chi nhánh
+                                select#MaChiNhanh(name='branch' required='')
+                                    each item in branchs
+                                        option(
+                                            value=item.MACHINHANH 
+                                        ) #{item.TENCHINHANH}
+                            .custom-form-group
+                                label(for='NgaySinh') Ngày sinh
+                                input#NgaySinh(type='date' name='dateofbirth' required='')
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='GioiTinh') Giới tính
+                                select#GioiTinh(name='gender' required='')
+                                    option(value='Male') Nam
+                                    option(value='Female') Nữ
+                            .custom-form-group
+                                label(for='email') Email
+                                input#Email(type="email" name='email' required='')
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='SDT') SĐT
+                                input#SDT(type='text' name='phone' required='')
+                            .custom-form-group
+                                label(for='DiaChi') Đỉa chỉ
+                                input#DiaChi(type='text' name='address' required='')
+                        button.btn.btn-primary(button-create) Thêm
+                        button.save-button(style='display: none;' button-update) Lưu thay đổi
+    form(
+        action=""
+        method='POST'
+        id="form-delete-item"
+        data-path=`${prefixAdmin}/api/v1/employees/delete`
+        )
+    script(src="/admin/js/employee.js")

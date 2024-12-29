@@ -1,0 +1,57 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+
+block main
+  +alert-error(3000)
+  +alert-success(3000)
+  main.content-right-statistical
+    .filter
+      form(
+          action=`${prefixAdmin}/api/v1/statistical` 
+          method="POST"
+          id='form-period'
+      ) 
+          select(id='period' name="period" required)
+            option(value="" selected=(period?false:true)) Period
+            option(value="day") Ngày
+            option(value="month") Tháng
+            option(value="quarter") Quý
+            option(value="year") Năm
+
+          .form-day(style="display: none;")
+            input#start-date(type="date" name="start_date" )
+            input#end-date(type="date" name="end_date")
+          .form-month(style="display: none;")
+            input#start-date(type="month" name="start_date" )
+            input#end-date(type="month" name="end_date")
+          .form-quarter(style="display: none;")
+            input#year_for_quarter(type="number" min=2020 max=2100 name="year_for_quarter" placeholder="Năm" )
+          .form-year(style="display: none;")
+            input#start-date(type="number" min=2020 max=2100 name="start_date" placeholder="Năm bắt đầu" )
+            input#end-date(type="number" min=2020 max=2100 name="end_date" placeholder="Năm kết thúc")
+
+          button(type="submit") Áp dụng
+    .table-container
+      table
+        thead
+          tr
+            th STT
+            th Mã khách hàng
+            th Khách hàng
+            th Điểm phục vụ
+      tbody
+        //- each item, index in invoices
+        //-   tr
+        //-     td #{index + 1}
+        //-     td #{item.MAHOADON}
+        //-     td #{item.FULLNAME}
+        //-     td      
+        //-         +formatDate(item.NGAYTHANHTOAN)
+        //-     td #{item.TONGTIEN}
+        //-     td #{item.SOTIENGIAM}
+        //-     td #{item.SOTIENTHANHTOAN}
+
+
+  - script(src="/admin/js/statistical.js")

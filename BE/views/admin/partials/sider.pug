@@ -1,0 +1,110 @@
+aside.sidebar
+  h1 SUSHI
+  nav
+    ul.menu-left
+      li
+        a(href='#') HỆ THỐNG QUẢN LÝ
+        ul
+          li
+            a(href=`${prefixAdmin}/api/v1/dashboard`)
+              span.inner-icon
+                i.fa-solid.fa-table-columns
+              span.inner-text Dashboard
+          li
+            a.sub-btn(href='#')
+              span.inner-icon
+                i.fa.fa-user-tie
+              span.inner-text Quản lý nhân viên
+              span.inner-icon
+                i.fas.fa-angle-right.dropdown
+            ul.sub-menu
+              li
+                a(href=`${prefixAdmin}/api/v1/employees/index`)
+                  span.inner-icon
+                    i.fa.fa-user-plus
+                  span.inner-text Thông tin nhân viên
+              li
+                a(href=`${prefixAdmin}/api/v1/scores/index`)
+                  span.inner-icon
+                    i.fa.fa-star
+                  span.inner-text Điểm đánh giá nhân viên
+          li
+            a.sub-btn(href='#')
+              span.inner-icon
+                i.fa.fa-map-marker-alt
+              span.inner-text Quản lý chi nhánh
+              span.inner-icon
+                i.fas.fa-angle-right.dropdown
+            ul.sub-menu
+              li
+                a(href=`${prefixAdmin}/api/v1/branchs/index`)
+                  span.inner-icon
+                    i.fa.fa-map-marker-alt
+                  span.inner-text Chi nhánh
+              li
+                a(href='D:\Shushi\quanlychinhanh\index_menuchinhanh.html')
+                  span.inner-icon
+                    i.fa.fa-list-alt
+                  span.inner-text Menu chi nhánh
+              li
+                a(href=`${prefixAdmin}/api/v1/scores/index`)
+                  span.inner-icon
+                    i.fa.fa-star
+                  // Có thể thay bằng <i class="fa fa-thumbs-up"></i> nếu muốn
+                  span.inner-text Đánh giá chi nhánh
+              li
+                a(href=`${prefixAdmin}/api/v1/dishs/index`)
+                  span.inner-icon
+                    i.fa.fa-utensils
+                  span.inner-text Món ăn
+          li
+            a(href=`${prefixAdmin}/api/v1/customers/index`)
+              span.inner-icon
+                i.fa.fa-users
+              span.inner-text Quản lý khách hàng
+          li
+            a(href=`${prefixAdmin}/api/v1/customer-cards/index`)
+              span.inner-icon
+                i.fa.fa-id-card
+              span.inner-text Quản lý thẻ khách hàng
+          li
+            a(href=`${prefixAdmin}/api/v1/order-slips/index`)
+              span.inner-icon
+                i.fa.fa-receipt
+              span.inner-text Quản lý phiếu đặt món
+          li
+            a(href=`${prefixAdmin}/api/v1/invoices/index`)
+              span.inner-icon
+                i.fa.fa-file-invoice-dollar
+              span.inner-text Quản lý hóa đơn
+          li
+            a.sub-btn(href='#')
+              span.inner-icon
+                i.fa.fa-chart-line
+              span.inner-text Quản lý doanh thu
+              span.inner-icon
+                i.fas.fa-angle-right.dropdown
+            ul.sub-menu
+              li
+                a(href=`${prefixAdmin}/api/v1/statistical/index`)
+                  span.inner-icon
+                    i.fa-solid.fa-table-columns
+                  span.inner-text Tổng quan
+              li
+                a(href=`${prefixAdmin}/api/v1/statistical/branch`)
+                  span.inner-icon
+                    i.fa.fa-map-marker-alt
+                  span.inner-text Chi nhánh
+              li
+                a(href=`${prefixAdmin}/api/v1/statistical/dish`)
+                  span.inner-icon
+                    i.fa.fa-utensils
+                  span.inner-text Món ăn
+      li
+        a(href='#') Tài khoản
+        ul
+          li
+            a(href=`${prefixAdmin}/api/v1/auth/logout`)
+              span.inner-icon
+                i.fa-solid.fa-right-from-bracket
+              span.inner-text Đăng xuất

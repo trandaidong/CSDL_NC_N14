@@ -1,0 +1,51 @@
+
+<div class="container_home-image">
+        <div class="picture-home"><img src="img/background-home.png" alt="anhnen"></div>
+        </div>
+        <div class="container_home-content">
+            <div class="home_info">
+                <div class="info-header">
+                    <div><img src="https://mrtomsushi.com/assets/images/web/title_decor.png" alt=""></div>
+                    <h2 class="info-title">THÔNG TIN</h2>
+                </div>
+                <div class="info-content">
+                    <div class="info-text">
+                        <ul>
+                            <li>
+                                <h3 class="info-tetx_title">Câu chuyện khởi nghiệp phía sau thương hiệu ShiShi khoa học tự nhiên</h3>
+                                <p class="info-tetx_para">Cường – một chàng trai trẻ từ trường Đại học Khoa học Tự nhiên, với niềm đam mê mãnh liệt với Sushi và đặc biệt là ẩm thực Nhật Bản, đã sáng lập nên Sushi Đường phố. Ban đầu chỉ là những hộp sushi giá bình dân, Cường đã nhận được sự yêu mến của khách hàng và dần mở rộng thành 11 chi nhánh trên toàn quốc. Đằng sau sự thành công đó là nghị lực phi thường và đam mê ẩm thực cháy bỏng của Cường. Hãy cùng nhìn lại hành trình đầy thử thách nhưng cũng đầy tự hào của Sushi Đường phố nhé!</p>
+                            </li>
+                            <li>
+                                <div><img src="https://mrtomsushi.com/upload/news/z58234573668316560ba8db555e3e9f2673e766c42c97d-8189.jpg" alt=""></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="info-image">
+                        <img src="" alt="" class="image_detail">
+                    </div>
+                </div>
+            </div>
+            <div class="products_outstanding">
+                <div class="info-header">
+                    <div><img src="https://mrtomsushi.com/assets/images/web/title_decor.png" alt=""></div>
+                    <h2 class="info-title">MÓN ĂN NỔI BẬT</h2>
+                </div>
+
+                <ul>
+                    {{#if products_outstanding}}
+                        {{#each products_outstanding}}
+                            <li >
+                                <div class="img-products_outstanding">
+                                    <img src="{{this.URL}}" alt="" class="img-outs">
+                                <p>{{this.TENMON}}</p>
+                                <p>{{this.MOTA}}</p>
+                                <p>{{this.GIA}} đ</p>
+                            </li>
+                        {{/each}}
+                    {{else}}
+                        <p>Không có sản phẩm nào để hiển thị</p>
+                    {{/if}}
+                </ul>
+            </div>
+
+    </div>

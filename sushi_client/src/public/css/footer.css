@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.footer-container {
+  background-color: #0a0a0a;
+  background-size: cover;
+  /* Để hình ảnh phủ kín div */
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 20px; }
+
+.footer-container ul:nth-child(1) {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  justify-content: center;
+  /* Căn giữa các phần theo chiều ngang */ }
+
+.footer-container ul:nth-child(1) > li {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  justify-content: center;
+  /* Căn giữa các phần theo chiều ngang */ }
+
+.footer-section-policies ul {
+  list-style: none; }
+
+.picture-fanpage {
+  width: 80%; }
+
+.footer-section-contact .footer-logo {
+  display: flex;
+  justify-content: center; }
+
+.footer-section-contact h3,
+.footer-section-fanpage {
+  text-align: center;
+  /* Căn giữa theo chiều ngang */ }
+
+.footer-container h3 {
+  color: #00FF00;
+  margin: 15px 0;
+  font-size: 35px; }
+
+.footer-section-contact p {
+  color: #ffff;
+  font-size: 25px; }
+
+.footer-container {
+  padding-bottom: 100px; }
+
+a {
+  font-size: 25px;
+  color: #ffff; }
+
+a:hover {
+  color: #00FF00; }

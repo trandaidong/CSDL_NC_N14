@@ -1,0 +1,111 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right
+        .row
+            .col-8.search-box
+                form(
+                    action=api 
+                    id='single-form-search'
+                    )
+                    select(name='branchId' hidden)
+                        option(value="" selected) Chọn chi nhánh
+                    input(
+                        type='text' 
+                        placeholder='Tên khách hàng...'
+                        name="keyword",
+                        class="form-control"
+                        value=keyword
+                    )
+                    button(type="submit") Lọc
+            .col-4  
+                +addnew() 
+        .table-container
+            table
+                thead
+                    tr
+                        th STT
+                        th Mã khách hàng
+                        th Họ Tên
+                        th Giới Tính
+                        th SĐT 
+                        th Hành động
+                tbody
+                    each item, index in customers
+                        tr
+                            td #{index + 1}
+                            td #{item.MAKHACHHANG}
+                            td #{item.FULLNAME}
+                            td #{item.GIOITINH=="Male"? "Nam":"Nữ"}
+                            td #{item.SDT}
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/admin/api/v1/customers/detail/${item.MAKHACHHANG}`
+                                    class="btn btn-secondary btn-sm"
+                                ) 
+                                    i.fa-solid.fa-circle-info
+                                button(
+                                    class="btn btn-warning btn-sm"
+                                    button-update-item
+                                    button-id=item.MAKHACHHANG
+                                ) 
+                                    i.fa-solid.fa-pen-to-square
+                                button(class="btn btn-danger btn-sm ml-l"
+                                    button-delete-item
+                                    button-id=item.MAKHACHHANG
+                                ) 
+                                    i.fa-solid.fa-trash-arrow-up
+
+
+
+        #container-right
+            // Modal Overlay
+            #modalOverlay.modal-overlay
+                .modal
+                    button#closeModalButton.close-button(type='button') &times;
+                    // Nút đóng modal
+                    h3.modalTitle Thêm khách hàng
+                    form(
+                        action=""
+                        id="addPlaneForm"
+                        form-create-update
+                        method="POST"
+                        data-path=`${prefixAdmin}/api/v1/customers`
+                    )
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='HoTen') Tên khách hàng
+                                input(type='text' id="HoTen" name="fullname" required='')
+                            .custom-form-group
+                                label(for='SDT') SĐT
+                                input(type='text' id='SDT' name='phone' required='')
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='Email') Email
+                                input#Email(type="email" name='email' required='')
+                            .custom-form-group
+                                label(for='CCCD') CCCD
+                                input(type="text" id='CCCD' name='CCCD' required='')
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='GioiTinh') Giới tính
+                                select(name='gender' id='GioiTinh' required='')
+                                    option(value='Male') Nam
+                                    option(value='Female') Nữ
+                            .custom-form-group
+                                label(for='MatKhau') Mật khẩu
+                                input(type='text' id="MatKhau" name='password' required='')
+                        button.btn.btn-primary(button-create) Thêm
+                        button.save-button(style='display: none;' button-update) Lưu thay đổi
+    form(
+        action=""
+        method='POST'
+        id="form-delete-item"
+        data-path=`${prefixAdmin}/api/v1/customers/delete`
+        )
+    script(src="/admin/js/customer.js")

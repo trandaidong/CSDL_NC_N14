@@ -1,0 +1,63 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right-statistical
+
+      .filter
+        form(
+          action=`${prefixAdmin}/api/v1/statistical` 
+          method="POST"
+          id='form-period-branchs'
+        ) 
+          select(id='period' name="period" required)
+            option(value="" selected=(period?false:true)) Period
+            option(value="day") Ngày
+            option(value="month") Tháng
+            option(value="quarter") Quý
+            option(value="year") Năm
+
+          .form-day(style="display: none;")
+            input#day(type="date" name="day" )
+          .form-month(style="display: none;")
+            input#month(type="month" name="month" )
+          .form-quarter(style="display: none;")
+            input#quarter(type="number" min=0 max=4 name="quarter" placeholder="Quý")
+            input#year_for_quarter(type="number" min=2020 max=2100 name="year_for_quarter" placeholder="Năm" )
+          .form-year(style="display: none;")
+            input#year(type="number" min=2020 max=2100 name="year" placeholder="Năm" )
+
+          button(type="submit") Áp dụng
+
+      .chart-container
+        if(data)
+          h3 #{title}
+          canvas#revenueChart
+    script.
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+      const data = !{JSON.stringify(data)};
+      new Chart(ctx, {
+        type: 'bar', // Hoặc 'line'
+        data: {
+          labels: data.map(item => item.NGAY), // Các mốc thời gian
+          datasets: [{
+            label: 'Revenue (USD)',
+            data: data.map(item => item.TONG_SOTIEN), // Doanh thu tương ứng
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: 'Time Period' } },
+            y: { title: { display: true, text: 'Revenue (USD)' }, beginAtZero: true }
+          }
+        }
+      });
+
+    script(src="/admin/js/statistical.js")

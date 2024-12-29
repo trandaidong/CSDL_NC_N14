@@ -1,0 +1,96 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right-statistical
+
+      .filter
+        form(
+          action=`${prefixAdmin}/api/v1/statistical/dish` 
+          method="POST"
+          id='form-period-dish'
+        ) 
+          select(name='branchId')
+            option(value="" selected) Chọn chi nhánh
+            each item in branchs
+              option(
+                  value=item.MACHINHANH
+                  selected=(branch === item.MACHINHANH ? true: false)
+              ) #{item.TENCHINHANH}
+          select(id='period' name="period" )
+            option(value="" selected=(period?false:true)) Period
+            option(value="day") Ngày
+            option(value="month") Tháng
+            option(value="quarter") Quý
+            option(value="year") Năm
+
+          .form-day(style="display: none;")
+            input#day(type="date" name="day" )
+          .form-month(style="display: none;")
+            input#month(type="month" name="month" )
+          .form-quarter(style="display: none;")
+            input#quarter(type="number" min=0 max=4 name="quarter" placeholder="Quý")
+            input#year_for_quarter(type="number" min=2020 max=2100 name="year_for_quarter" placeholder="Năm" )
+          .form-year(style="display: none;")
+            input#year(type="number" min=2020 max=2100 name="year" placeholder="Năm" )
+
+          button(type="submit") Áp dụng
+
+      .chart-container
+        if(data)
+          h3 #{title1}
+          canvas#revenueChart1
+          h3 #{title2}
+          canvas#revenueChart2
+    script.
+      const ctx1 = document.getElementById('revenueChart1').getContext('2d');
+      const data1 = !{JSON.stringify(data)};
+
+      new Chart(ctx1, {
+        type: 'bar', // Hoặc 'line'
+        data: {
+          labels: data1.map(item => item.NGAY), // Các mốc thời gian
+          datasets: [{
+            label: 'Revenue (USD)',
+            data: data1.map(item => item.TONG_SOTIEN), // Doanh thu tương ứng
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: 'Branch' } },
+            y: { title: { display: true, text: 'Revenue (USD)' }, beginAtZero: true }
+          }
+        }
+      });
+
+
+      const ctx2 = document.getElementById('revenueChart2').getContext('2d');
+      const data2 = !{JSON.stringify(data)};
+
+      new Chart(ctx2, {
+        type: 'bar', // Hoặc 'line'
+        data: {
+          labels: data2.map(item => item.NGAY), // Các mốc thời gian
+          datasets: [{
+            label: 'Revenue (USD)',
+            data: data2.map(item => item.SOLUONG), // Doanh thu tương ứng
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          }]
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: 'Branch' } },
+            y: { title: { display: true, text: 'Quantity' }, beginAtZero: true }
+          }
+        }
+      });
+    script(src="/admin/js/statistical.js")

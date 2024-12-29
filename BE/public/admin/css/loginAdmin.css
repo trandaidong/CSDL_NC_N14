@@ -1,0 +1,136 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  height: 100%;
+  min-height: 780px;
+  width: 100%;
+  background-image: url("../img/body_bg.jpg");
+  background-size: contain;
+  background-position: center;
+}
+
+.container-right {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  height: 650px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.img-banner {
+  background-color: gray;
+  height: 100%;
+  width: 45%;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.img-banner h1 {
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/banner.jpg") center/cover no-repeat;
+  color: white;
+  text-transform: uppercase;
+  font: bold 100px/1.4 sans-serif;
+  padding: 30px 0 0 40px;
+  border-radius: 15px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Content */
+#login-form,
+#register-form,
+#forget-password-form {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-sushi {
+  height: 110px;
+  width: 120px;
+  background-image: url("../img/logo.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -50px;
+  border-radius: 70px;
+}
+
+.header-form h1 {
+  color: #1ee024;
+  font-size: 50px;
+  margin-top: 30px;
+}
+
+.form-group-content {
+  width: 80%;
+}
+
+.form-group-content label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  height: 100%;
+}
+
+.form-group-content label p {
+  color: #a4a5a5;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.form-group-content label input {
+  font-size: 15px;
+  height: 50px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 7px;
+  background-color: aliceblue;
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  width: 80%;
+  margin-top: 55px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  background-color: #1ee024;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #5df87f;
+}

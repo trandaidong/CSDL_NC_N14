@@ -1,0 +1,108 @@
+extends ../../layouts/default.pug
+include ../../mixins/search.pug
+include ../../mixins/addnew.pug
+include ../../mixins/alert.pug
+include ../../mixins/moment.pug
+
+block main
+    +alert-error(3000)
+    +alert-success(3000)
+    main.content-right
+        .row
+            .col-8.search-box
+                form(
+                    action=api 
+                    id='single-form-search'
+                    )
+                    select(name='branchId' hidden)
+                        option(value="" selected) Chọn chi nhánh
+                    input(
+                        type='text' 
+                        placeholder='Thẻ khách hàng...'
+                        name="keyword",
+                        class="form-control"
+                        value=keyword
+                    )
+                    button(type="submit") Lọc
+            .col-4  
+                +addnew() 
+        .table-container
+            table
+                thead
+                    tr
+                        th STT
+                        th Mã Thẻ
+                        th Tên Khách Hàng
+                        th Ngày Lập
+                        th Nhân Viên Lập
+                        th Loại Thẻ
+                        th Điểm
+                        th Hoạt Động
+                tbody
+                    each item, index in cards
+                        tr
+                            td #{index + 1}
+                            td #{item.MATHE}
+                            td #{item.HOTENKH}
+                            td 
+                                +formatDateTime(item.NGAYLAP)
+                            td #{item.HOTENNV}
+                            td #{item.LOAITHE}
+                            td #{item.DIEMTICHLUY}
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/admin/api/v1/customer-cards/detail/${item.MATHE}`
+                                    class="btn btn-secondary btn-sm"
+                                ) 
+                                    i.fa-solid.fa-circle-info
+                                button(
+                                    class="btn btn-warning btn-sm"
+                                    button-update-item
+                                    button-id=item.MATHE
+                                ) 
+                                    i.fa-solid.fa-pen-to-square
+                                button(class="btn btn-danger btn-sm ml-l"
+                                    button-delete-item
+                                    button-id=item.MATHE
+                                ) 
+                                    i.fa-solid.fa-trash-arrow-up
+
+
+
+        #container-right
+            // Modal Overlay
+            #modalOverlay.modal-overlay
+                .modal
+                    button#closeModalButton.close-button(type='button') &times;
+                    // Nút đóng modal
+                    h3.modalTitle Thêm thẻ khách hàng
+                    form(
+                        action=""
+                        id="addPlaneForm"
+                        form-create-update
+                        method="POST"
+                        data-path=`${prefixAdmin}/api/v1/customer-cards`
+                    )
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='MaKhachHang') Mã khách hàng
+                                input(type='text' id="MaKhachHang" name="customerid" required='')
+                            .custom-form-group
+                                label(for='typeCard') Loại thẻ
+                                select#typeCard(name='typeCard' required='')
+                                    option(value='Member' selected) Member
+                                    option(value='Silver') Silver
+                                    option(value='Gold') Gold
+                        .custom-form-row
+                            .custom-form-group
+                                label(for='DiemTichLuy') Điểm tích lũy
+                                input(type='number' id='DiemTichLuy' name='point' value=0 require)
+                        button.btn.btn-primary(button-create) Thêm
+                        button.save-button(style='display: none;' button-update) Lưu thay đổi
+    form(
+        action=""
+        method='POST'
+        id="form-delete-item"
+        data-path=`${prefixAdmin}/api/v1/customer-cards/delete`
+        )
+    script(type="module" src="/admin/js/customer-card.js")
