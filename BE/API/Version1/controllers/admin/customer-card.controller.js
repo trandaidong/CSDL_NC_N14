@@ -112,7 +112,7 @@ module.exports.updatePatch = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-            CALL UpdateCustomerCard(?,?,?)
+            CALL UPDATE_CARD_CUSTOMER(?,?,?)
         `, [id, typeCard, point], (err, results) => {
                 if (err) {
                     console.log(err);

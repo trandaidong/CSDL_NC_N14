@@ -66,13 +66,14 @@ module.exports.index = async (req, res) => {
     } catch (error) {
         console.error('Lỗi truy vấn:', error);
         res.status(500).send("Lỗi lấy dữ liệu từ cơ sở dữ liệu.");
-    } finally {
-        process.on('SIGINT', () => {
-            console.log('Đang tắt server...');
-            database.disconnect(); // Đóng kết nối trước khi thoát
-            process.exit(0);
-        });
-    }
+    } 
+    // finally {
+    //     process.on('SIGINT', () => {
+    //         console.log('Đang tắt server...');
+    //         database.disconnect(); // Đóng kết nối trước khi thoát
+    //         process.exit(0);
+    //     });
+    // }
 };
 //[POST] /admin/api/v1/employee/create
 module.exports.create = async (req, res) => {
@@ -93,7 +94,7 @@ module.exports.create = async (req, res) => {
         if (!emailExists.length) {
             await new Promise((resolve, reject) => {
                 connection.query(`
-                CALL InsertNhanVien(?,?,?,?,?,?,?,?,?,?)
+                CALL INSERT_EMPLOYEE(?,?,?,?,?,?,?,?,?,?)
             `, [fullname, department, branch, email, dateofbirth.split('T')[0],
                     gender, 0, phone, address, md5(phone)], (err, results) => {
                         if (err) reject(err);
@@ -110,7 +111,8 @@ module.exports.create = async (req, res) => {
     } catch (error) {
         req.flash("error", `Create faild!`);
         res.redirect(`back`);
-    } finally {
+    }
+     finally {
         process.on('SIGINT', () => {
             console.log('Đang tắt server...');
             database.disconnect(); // Đóng kết nối trước khi thoát
@@ -140,7 +142,8 @@ module.exports.delete = async (req, res) => {
         console.log(error);
         req.flash("error", `Delete faild!`);
         res.redirect(`back`);
-    } finally {
+    } 
+    finally {
         process.on('SIGINT', () => {
             console.log('Đang tắt server...');
             database.disconnect(); // Đóng kết nối trước khi thoát
@@ -172,7 +175,8 @@ module.exports.update = async (req, res) => {
     } catch (error) {
         console.error('Lỗi khi lấy thông tin nhân viên:', error);
         res.status(500).json({ message: 'Lỗi server!' });
-    } finally {
+    } 
+    finally {
         process.on('SIGINT', () => {
             console.log('Đang tắt server...');
             database.disconnect(); // Đóng kết nối trước khi thoát
@@ -201,7 +205,7 @@ module.exports.updatePatch = async (req, res) => {
         if (emailExists.length) {
             await new Promise((resolve, reject) => {
                 connection.query(`
-                CALL UpdateNhanVienByEmail(?,?,?,?,?,?,?,?,?)
+                CALL UPDATE_EMPLOYEE(?,?,?,?,?,?,?,?,?)
             `, [id, fullname, department, branch, email, dateofbirth.split('T')[0],
                     gender, phone, address], (err, results) => {
                         if (err) {
@@ -222,7 +226,8 @@ module.exports.updatePatch = async (req, res) => {
     } catch (error) {
         req.flash("error", `Update faild!`);
         res.redirect(`back`);
-    } finally {
+    } 
+    finally {
         process.on('SIGINT', () => {
             console.log('Đang tắt server...');
             database.disconnect(); // Đóng kết nối trước khi thoát
@@ -258,7 +263,8 @@ module.exports.detail = async (req, res) => {
     } catch (error) {
         console.error('Lỗi truy vấn:', error);
         res.status(500).send("Lỗi lấy dữ liệu từ cơ sở dữ liệu.");
-    } finally {
+    } 
+    finally {
         process.on('SIGINT', () => {
             console.log('Đang tắt server...');
             database.disconnect(); // Đóng kết nối trước khi thoát

@@ -8,6 +8,7 @@ module.exports.login = (req, res) => {
         res.redirect(`${systemConfig.prefixAdmin}/api/v1/dashboard`)
     }
     else {
+        
         res.render("admin/pages/auth/login.pug", {
             pageTitle: "Đăng nhập"
         })
@@ -24,18 +25,19 @@ module.exports.loginPost = async (req, res) => {
             connection.query(`
             SELECT *
             FROM NHANVIEN
-            WHERE EMAIL=?
+            WHERE EMAIL =?
         `, [username], (err, results) => {
                 if (err) reject(err);
                 else resolve(results);
             });
         });
+
         if (!user) {// nếu không có người dùng
             req.flash("error", "Email not exists!");
             res.redirect('back');
             return;
         }
-        if (md5(password) != user.MATKHAU) {
+        if (password != user.MATKHAU) {
             req.flash("error", "Invalid password!");
             res.redirect('back');
             return;

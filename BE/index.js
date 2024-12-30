@@ -15,7 +15,7 @@ const systemConfig = require("./config/system");
 require('dotenv').config()
 
 const app = express();
-const port = 3000;
+const port = 3002;
 try {
     database.connect();
 } catch (err) {
@@ -23,12 +23,11 @@ try {
     process.exit(1); // Thoát ứng dụng nếu không thể kết nối
 }
 
-// Đăng ký xử lý sự kiện SIGINT
-// process.on('SIGINT', () => {
-//     console.log('Đang tắt server...');
-//     database.disconnect(); // Đóng kết nối trước khi thoát
-//     process.exit(0);
-// });
+process.on('SIGINT', () => {
+    console.log('Đang tắt server...');
+    database.disconnect(); // Đóng kết nối trước khi thoát
+    process.exit(0);
+});
 
 app.use(methodOverride('_method')) // override
 app.use(bodyParser.urlencoded({ extended: false }))// encode chuyển đổi res.body => dữ liệu

@@ -62,7 +62,7 @@ module.exports.create = async (req, res) => {
         if (!emailExists.length) {
             await new Promise((resolve, reject) => {
                 connection.query(`
-                CALL InsertCustomer(?,?,?,?,?,?)
+                CALL INSERT_CUSTOMER(?,?,?,?,?,?)
             `, [phone, fullname, email, CCCD,
                     gender, md5(password)], (err, results) => {
                         if (err) {
@@ -175,7 +175,7 @@ module.exports.updatePatch = async (req, res) => {
         if (employeeExists.length) {
             await new Promise((resolve, reject) => {
                 connection.query(`
-                CALL UpdateCustomer(?,?,?,?,?,?,?)
+                CALL UPDATE_CUSTOMER(?,?,?,?,?,?,?)
             `, [id, phone, fullname, email, CCCD,
                     gender, ''], (err, results) => {
                         if (err) {

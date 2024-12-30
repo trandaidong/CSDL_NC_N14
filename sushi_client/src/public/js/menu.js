@@ -39,6 +39,10 @@ function handleGetSearch(callback) {
         var branchId = document.querySelector('#type-of-branch').value;
         var dishTypeId = document.querySelector('#type-of-dish').value;
         var priceRange = document.querySelector('#type-of-price').value;
+        if(!branchId){
+            alert('chưa chọn chi nhánh');
+            return;
+        }
         sessionStorage.setItem('branchID',branchId);
         fetch(`${searchApi}?branchId=${branchId}&dishTypeId=${dishTypeId}&priceRange=${priceRange}`)
             .then(function (response) {
@@ -65,7 +69,6 @@ function renderSearch(searchs) {
                     <img src="${dish.URL}" alt="${dish.TENMON}" class="img-branch">
                 </div>
                 <p>${dish.TENMON}</p>
-                <p>${dish.MOTA}</p>
                 <p>${dish.GIA}</p>    
             </li>
         `;

@@ -13,12 +13,12 @@ module.exports.index = async (req, res) => {
         //Thực hiện truy vấn hóa đơn offline
         const [OfflineInvoices] = await new Promise((resolve, reject) => {
             connection.query(`
-                SELECT PDOFF.MAPHIEUDATMON, KH.FULLNAME AS KHACHHANG, NV.FULLNAME AS NHANVIEN, PDOFF.HOADON, 
+                SELECT PDOFF.MAPHIEUDATMON, KH.FULLNAME AS KHACHHANG, NV.FULLNAME AS NHANVIEN, PDOFF.HOADON
                 FROM PHIEUDATOFFLINE PDOFF
                 JOIN KHACHHANG KH ON PDOFF.MAKHACHHANG=KH.MAKHACHHANG
                 JOIN NHANVIEN NV ON PDOFF.MANHANVIEN=NV.MANHANVIEN
                 WHERE ((KH.FULLNAME LIKE ? OR PDOFF.MAPHIEUDATMON = ? OR KH.MAKHACHHANG = ?) OR (? IS NULL))
-                ORDER BY PDOFF.HOADON DESC
+                ORDER BY PDOFF.HOADON ASC
                 LIMIT 100;
             `, ['%' + keyword + '%', keyword, keyword, keyword], (err, results) => {
                 if (err) reject(err);
@@ -48,7 +48,7 @@ module.exports.create = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-            CALL InsertPhieuDatOffline(?,?,?,?)
+            CALL INSERT_PHIEUDATOFFLINE(?,?,?,?)
         `, [user.MANHANVIEN, user.MACHINHANH, IDKhachHang, SoBan], (err, results) => {
                 if (err) reject(err);
                 else resolve([results]);
@@ -108,7 +108,7 @@ module.exports.updatePatch = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-            CALL UpdatePhieuDatOffline(?,?,?)
+            CALL UPDATE_PHIEUDATOFFLINE(?,?,?)
         `, [id, IDKhachHang, SoBan], (err, results) => {
                 if (err) {
                     console.log(err);
@@ -214,7 +214,7 @@ module.exports.detailCreate = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-              CALL AddDetailOrderSlipOffline(?,?,?)
+              CALL ADD_DETAIL_ORDERSLIP_OFFLINE(?,?,?)
             `, [orderSlipId, dish, quantity], (err, results) => {
                 if (err) reject(err);
                 else resolve(results);
@@ -273,7 +273,7 @@ module.exports.detailUpdatePatch = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-              CALL AddDetailOrderSlipOffline(?,?,?)
+              CALL ADD_DETAIL_ORDERSLIP_OFFLINE(?,?,?)
             `, [orderSlipId, dish, quantity], (err, results) => {
                 if (err) reject(err);
                 else resolve(results);
@@ -324,13 +324,12 @@ module.exports.createInvoice = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-            CALL TaoHoaDonPhieuDat(?,?)
+            CALL CREATE_INVOICE_AUTO(?,?)
         `, [id, 0], (err, results) => {
                 if (err) reject(err);
                 else resolve([results]);
             });
         });
-        console.log("tạo thành công")
         req.flash("success", `Create successfully!`);
         res.redirect(`back`);
     } catch (error) {

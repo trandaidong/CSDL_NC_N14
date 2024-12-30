@@ -13,6 +13,7 @@
                     <li> <span>Chi Nhánh</span></li>
                     <li>
                         <select id="type-of-branch">
+                            <option value="" disabled selected>Chọn chi nhanh</option>
                         {{#if branch}}
                             {{#each branch}}
                                 
@@ -20,7 +21,7 @@
                                 
                             {{/each}}
                         {{else}}
-                            <p>Không có sản phẩm nào để hiển thị</p>
+                            <h2 style="color: red;">Vui lòng chọn  chi nhánh!</h2>
                         {{/if}}
                         </select>
                         
@@ -39,7 +40,7 @@
                                     
                                 {{/each}}
                             {{else}}
-                                <p>Không có sản phẩm nào để hiển thị</p>
+                                <h2 style="color: red;">Vui lòng chọn  chi nhánh!</h2>
                             {{/if}}
                         </select>
                     </li>                
@@ -76,12 +77,11 @@
                             <img src="{{this.URL}}" alt="" class="img-branch">
                         </div>
                         <p>{{this.TENMON}}</p>
-                        <p>{{this.MOTA}}</p>
                         <p>{{this.GIA}} đ</p>
                     </li>
                 {{/each}}
             {{else}}
-                <p>Không có sản phẩm nào để hiển thị</p>
+                <h2 style="color: red;">Vui lòng chọn  chi nhánh!</h2>
             {{/if}}       
         </ul>
 

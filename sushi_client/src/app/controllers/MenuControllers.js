@@ -38,7 +38,7 @@ class loginController {
             .then(([products,branch, TypeOfDish]) => {
                 // Sau khi tất cả dữ liệu đã được lấy, render view với tất cả dữ liệu
                 res.render('Menu', { 
-                    products,
+                    //products,
                     branch, 
                     TypeOfDish,
                     layout: 'main'

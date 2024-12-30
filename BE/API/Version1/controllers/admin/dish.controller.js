@@ -113,7 +113,7 @@ module.exports.updatePatch = async (req, res) => {
     try {
         await new Promise((resolve, reject) => {
             connection.query(`
-            CALL UpdateDish(?,?,?,?,?,?)
+            CALL UPDATE_DISH(?,?,?,?,?,?)
         `, [id, TenMon, LoaiMon, Gia, SoLuong,URL], (err, results) => {
                     if (err) {
                         console.log(err);
@@ -147,7 +147,7 @@ module.exports.create = async (req, res) => {
         // Thực hiện truy vấn employee
         await new Promise((resolve, reject) => {
             connection.query(`
-                CALL InsertDish(?,?,?,?,?)
+                CALL INSERT_DISH(?,?,?,?,?)
             `, [TenMon, LoaiMon, Gia, URL, SoLuong], (err, results) => {
                 if (err) {
                     console.log(err)
